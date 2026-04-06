@@ -24,14 +24,16 @@ CREATE DATABASE IF NOT EXISTS tasty_bytes_dbt_db CLONE other_tasty_bytes_dbt_db;
 -- CREATE DATABASE IF NOT EXISTS tasty_bytes_dbt_db;
 
 -- Repeat the line below for other necessary schemas
--- CREATE SCHEMA IF NOT EXISTS tasty_bytes_dbt_db.dev CLONE tasty_bytes_dbt_db.dev;
+-- CREATE SCHEMA IF NOT EXISTS tasty_bytes_dbt_db.dev CLONE other_tasty_bytes_dbt_db.dev;
+-- CREATE SCHEMA IF NOT EXISTS tasty_bytes_dbt_db.prod CLONE other_tasty_bytes_dbt_db.prod;
 
 -- Option 3: Create new dev and prod databases and schemas
 -- This is the simplest approach when you're starting from scratch.
--- CREATE DATABASE IF NOT EXISTS tasty_bytes_dbt_db;
--- CREATE SCHEMA IF NOT EXISTS tasty_bytes_dbt_db.dev;
+  -- CREATE DATABASE IF NOT EXISTS tasty_bytes_dbt_db_dev;
+  -- CREATE SCHEMA IF NOT EXISTS tasty_bytes_dbt_db_dev.dev;
 
--- CREATE SCHEMA IF NOT EXISTS tasty_bytes_dbt_db.prod;
+  -- CREATE DATABASE IF NOT EXISTS tasty_bytes_dbt_db_prod;
+  -- CREATE SCHEMA IF NOT EXISTS tasty_bytes_dbt_db_prod.prod; 
 
 -- =============================================================================
 -- STEP 2: Create a GitHub service user in Snowflake (recommended)
@@ -46,13 +48,13 @@ CREATE USER IF NOT EXISTS github_actions_service_user
     ISSUER = 'https://token.actions.githubusercontent.com',
     SUBJECT = 'repo:your_repo_org/your_dbt_repo:environment:prod'
   )
-  DEFAULT_ROLE = <role_name>
+  DEFAULT_ROLE = ACCOUNTADMIN
   COMMENT = 'Service user for GitHub Actions';
 
 -- After you create your user, explicitly grant the default role for the service user
 -- to assume that role. The DEFAULT_ROLE parameter only sets the user's default role
 -- and doesn't grant it.
-GRANT ROLE <role_name> TO USER github_actions_service_user;
+GRANT ROLE ACCOUNTADMIN TO USER github_actions_service_user;
 
 -- Set a default warehouse:
 ALTER USER github_actions_service_user SET DEFAULT_WAREHOUSE = 'tasty_bytes_dbt_wh';
