@@ -65,8 +65,8 @@ ALTER USER github_actions_service_user SET DEFAULT_WAREHOUSE = 'tasty_bytes_dbt_
 -- This method is easier to reuse across repositories but less secure because it relies
 -- on long-lived credentials and requires manual rotation.
 -- CREATE USER IF NOT EXISTS github_actions_service_user
--- TYPE = SERVICE
--- COMMENT = 'Service user for GitHub Actions';
+--   TYPE = SERVICE
+--   COMMENT = 'Service user for GitHub Actions';
 
 -- Grant the level of access to your user that can create network, auth policies,
 -- and objects such as DBs and schemas
@@ -78,12 +78,12 @@ ALTER USER github_actions_service_user SET DEFAULT_WAREHOUSE = 'tasty_bytes_dbt_
 -- CREATE SCHEMA IF NOT EXISTS github_actions_access_management.POLICIES;
 
 -- CREATE AUTHENTICATION POLICY github_actions_access_management.POLICIES.github_auth_policy
--- authentication_methods = ('PROGRAMMATIC_ACCESS_TOKEN')
--- pat_policy = (
--- default_expiry_in_days = 15, -- default value
--- max_expiry_in_days = 365, -- default value
--- network_policy_evaluation = ENFORCED_NOT_REQUIRED -- this is needed to ensure you can generate a PAT on Snowsight
--- );
+--   authentication_methods = ('PROGRAMMATIC_ACCESS_TOKEN')
+--   pat_policy = (
+--     default_expiry_in_days = 15, -- default value
+--     max_expiry_in_days = 365, -- default value
+--     network_policy_evaluation = ENFORCED_NOT_REQUIRED -- this is needed to ensure you can generate a PAT on Snowsight
+--   );
 
 -- ALTER USER github_actions_service_user SET AUTHENTICATION POLICY github_actions_access_management.POLICIES.github_auth_policy;
 
