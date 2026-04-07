@@ -3,7 +3,7 @@
 ALTER TASK IF EXISTS run_tasty_bytes_subset SUSPEND;
 ALTER TASK IF EXISTS run_tasty_bytes_full SUSPEND;
 
--- Builds a subset of the models run tests. This is an example of a subset that needs to be available early for business needs:
+-- Builds a subset of the models run tests. This is an example of a subset that needs to be available early for business needs
 CREATE OR ALTER TASK run_tasty_bytes_subset
   WAREHOUSE = tasty_bytes_dbt_wh
   SCHEDULE = '12 hours'
