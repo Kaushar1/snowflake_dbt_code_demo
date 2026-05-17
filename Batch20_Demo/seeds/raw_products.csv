@@ -1,0 +1,11 @@
+product_id,product_name,category,unit_price,supplier
+101,Laptop Pro,Electronics,1299.99,TechCorp
+102,Wireless Mouse,Electronics,29.99,TechCorp
+103,Office Chair,Furniture,449.99,ComfortPlus
+104,Standing Desk,Furniture,699.99,ComfortPlus
+105,Notebook Set,Stationery,12.99,PaperWorld
+106,Monitor 27in,Electronics,399.99,TechCorp
+107,Keyboard Mech,Electronics,89.99,TechCorp
+108,Desk Lamp,Furniture,59.99,ComfortPlus
+109,Pen Pack,Stationery,8.99,PaperWorld
+110,Webcam HD,Electronics,79.99,TechCorp

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: bronze_raw
+    database: DEMO_DB
+    schema: BRONZE
+    description: "Raw source data loaded into Bronze layer via seeds"
+    tables:
+      - name: raw_customers
+        description: "Raw customer data"
+      - name: raw_orders
+        description: "Raw order transactions"
+      - name: raw_products
+        description: "Raw product catalog"
