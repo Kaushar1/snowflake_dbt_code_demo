@@ -1,0 +1,37 @@
+name: Batch20_Demo
+version: 1.0.0
+config-version: 2
+profile: Batch20_Demo
+model-paths:
+  - models
+analysis-paths:
+  - analyses
+test-paths:
+  - tests
+seed-paths:
+  - seeds
+macro-paths:
+  - macros
+snapshot-paths:
+  - snapshots
+
+seeds:
+  Batch20_Demo:
+    +schema: BRONZE
+
+models:
+  Batch20_Demo:
+    +materialized: view
+    bronze:
+      +materialized: view
+      +schema: BRONZE
+    silver:
+      +materialized: table
+      +schema: SILVER
+    gold:
+      +materialized: table
+      +schema: GOLD
+
+snapshots:
+  Batch20_Demo:
+    +schema: SILVER

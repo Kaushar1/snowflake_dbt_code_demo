@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension with tier classification"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_tier
+        tests:
+          - accepted_values:
+              values: ['Tier 1', 'Tier 2', 'Tier 3']
+
+  - name: fact_transactions
+    description: "Incremental transaction fact table with enriched data"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: total_amount
+        tests:
+          - not_null
