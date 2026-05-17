@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: gold_monthly_revenue
+    description: "Monthly revenue aggregated by category and payment method"
+    columns:
+      - name: revenue_month
+        tests:
+          - not_null
+      - name: monthly_revenue
+        tests:
+          - not_null
+
+  - name: gold_customer_360
+    description: "360-degree customer view with lifetime metrics and loyalty segment"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: loyalty_segment
+        tests:
+          - accepted_values:
+              values: ['Platinum', 'Gold', 'Silver', 'Bronze']
+
+  - name: gold_product_performance
+    description: "Product performance metrics with return rate analysis"
+    columns:
+      - name: product_name
+        tests:
+          - not_null
+      - name: total_revenue
+        tests:
+          - not_null
